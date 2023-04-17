@@ -1,3 +1,4 @@
+import pickle
 def saisirNotes(liste,nbr):
     for i in range(nbr):
         liste.append(float(input("Tapez la note numéro "+str(i+1)+" :")))
@@ -20,3 +21,41 @@ def inverser(liste):
 
 def inverserV1(liste):
     return liste[::-1]
+def enregistrer(liste):
+    fichier=open("notes.dat","wb")
+    pickle.dump(liste,fichier)
+    fichier.close()
+
+
+
+def charger():
+    fichier=open("notes.dat","rb")
+    liste=pickle.load(fichier)
+    fichier.close()
+    return liste
+def getAdmis(liste):
+    liste1=[]
+    for item in liste:
+        if item>=10:
+            liste1.append(item)
+    return liste1
+
+def getNonAdmis(liste):
+    liste1=[]
+    for item in liste:
+        if item<10:
+            liste1.append(item)
+            
+    return liste1
+def getMax(liste):
+    m=liste[0]
+    for item in liste:
+        if item>m:
+            m=item
+    return m
+def getMin(liste):
+    m=liste[0]
+    for item in liste:
+        if item<m:
+            m=item
+    return m
